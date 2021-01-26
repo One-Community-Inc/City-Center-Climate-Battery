@@ -12,14 +12,16 @@ m_dot = (V_s*rho); % kg/s
 diff_air = 20;%*10^-6; %m^2/s
 hair = 12; %turbulent air W/m*K
 %Tube properties
-L_tube = 1.53;
+L_tubes = 153; %m
+L_tube = 9.04; %m
 diff_PEH = 2.77*10^-7; %m2/s
 k_PEH = .5; %W/m*K
 r1 = 0.1541;%m inner r
 r2 = 0.1683;%m outer r 
 A_tube =2*pi*r1; %m^2
 t = 3600; %1hr in seconds
-SA_tubes  = r2*2*pi*L_tube;
+SA_tubes  = r2*2*pi*L_tubes;%total all tube length
+SA_tube = r2*2*pi*L_tube; %1 section of tube
 %Dirt properties
 diff_soil = .91;%10^-6; %m2/s
 k_soil = 2.1; %W/m*K
@@ -54,5 +56,5 @@ t2 = T_EarthC;
 t1 = T_G;
 D = d/s;
 q = 2*pi*k_soil*(t2-t1)/((1/Bi_1)+log((d/(pi*r1*D))*sinh(2*pi*(D+(D/Bi_2)))));
-T_delta3 = q *R_T*SA_tubes;
+T_delta3 = q *R_T*SA_tube*7; %7 or 8 is the number of tubes within each system
 T_out3 = T_G + T_delta3 -273
