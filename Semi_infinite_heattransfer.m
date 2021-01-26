@@ -36,10 +36,9 @@ R_T = R_contact*(R_conv+R_pipe);
 %METHOD 1 - FLUX into pipe -> Q into pipe -> Temp out factoring in thermal
 %resistances  ** NOT WORKING, temps go out of possible range
 Flux_Earth = (k_soil*(T_G - T_EarthC))/(sqrt(pi*diff_PEH*t)); %W/m^2
-Q_Earth = Flux_Earth*SA_tubes*R_T;
-T_delta = Q_Earth *R_T;
-T_out1 = T_G + T_delta;
-T_out1 = T_out1-273
+Q_Earth = Flux_Earth*SA_tubes;%W
+T_delta1 = Q_Earth *R_T;%K
+T_out1 = T_G + T_delta1-273%K
 %METHOD 2 - T out based on equation pg.339. 
 %**NOT WORKING, does not factor in thermal resistance between
 %earth/tubes/air. Way too effective, reaches earth temp within 1.5 meters
@@ -55,5 +54,5 @@ t2 = T_EarthC;
 t1 = T_G;
 D = d/s;
 q = 2*pi*k_soil*(t2-t1)/((1/Bi_1)+log((d/(pi*r1*D))*sinh(2*pi*(D+(D/Bi_2)))));
-T_delta = q *R_T;
-T_out3 = T_G + T_delta -273
+T_delta3 = q *R_T*SA_tubes;
+T_out3 = T_G + T_delta3 -273
