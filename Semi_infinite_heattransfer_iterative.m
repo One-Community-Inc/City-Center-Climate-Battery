@@ -83,7 +83,7 @@ for i=1:length(t)
         q_w(i) = 2*pi*k_soil*(T_EarthPW(i)-t1w)/((1/Bi_1)+log((burial_D/(pi*r1*D))*sinh(2*pi*(D+(D/Bi_2)))));
         if  T_EarthPW(i) < t1w*1.1 && T_EarthPW(i) > t1w && flag==0
             t_end = t(i)/(60*60);
-             
+            disp([num2str(t_end),' Hours to reach ambient Earth temperature'])
             flag =1;
         end
     end
